@@ -20,7 +20,7 @@ export const ReviewInputSchema = z.object({
   isVerifiedPurchase: z.boolean(),
   title: z.string().min(1, 'Title is required'),
   comment: z.string().min(1, 'Comment is required'),
-  rating: z.coerce
+  rating: z
     .number()
     .int()
     .min(1, 'Rating must be at least 1')
@@ -55,8 +55,8 @@ export const ProductInputSchema = z.object({
   ratingDistribution: z
     .array(z.object({ rating: z.number(), count: z.number() }))
     .max(5),
-  reviews: z.array(ReviewInputSchema).default([]),
-  numSales: z.coerce
+    reviews: z.array(ReviewInputSchema).default([]),
+     numSales: z.coerce
     .number()
     .int()
     .nonnegative('Number of sales must be a non-negative number'),
@@ -301,4 +301,3 @@ export const SettingInputSchema = z.object({
     .min(1, 'At least one delivery date is required'),
   defaultDeliveryDate: z.string().min(1, 'Delivery date is required'),
 })
-
